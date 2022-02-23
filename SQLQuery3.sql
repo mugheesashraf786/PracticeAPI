@@ -1,0 +1,3 @@
+﻿SET IDENTITY_INSERT Users ON;
+Select *from Users
+SET IDENTITY_INSERT Users OFF;

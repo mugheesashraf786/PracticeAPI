@@ -16,7 +16,9 @@ namespace DatingApp.Extension
     {
         public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration config)
         {
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IPhotoService, PhotoService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUserRepository, UserRepository>();
             string connectionString = config.GetConnectionString("DefaultConnection");

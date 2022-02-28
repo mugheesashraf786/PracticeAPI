@@ -16,6 +16,8 @@ namespace DatingApp.Extension
     {
         public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration config)
         {
+            services.AddScoped<ILikesRepository, LikeRepository>();
+            services.AddScoped<LogUserActivity>();
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
@@ -23,7 +25,6 @@ namespace DatingApp.Extension
             services.AddScoped<IUserRepository, UserRepository>();
             string connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(connectionString));
-
             return services;
         }
     }
